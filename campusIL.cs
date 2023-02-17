@@ -1,104 +1,163 @@
-
-class Program
-{
-
-    static void Main(string[] args)
-    {
-        
-     
-    }
-    // מסיבת יום הולדת
-    private static void BirthdayBalloons()
-    {
+public void BirthdayBalloons()
+        {
             Console.WriteLine("Enter the number of participants: ");
-            int participants = int.Parse(Console.ReadLine());
+            string participants = Console.ReadLine();
+            int participantint = 0;
 
-            Console.WriteLine("Enter the number of balloons: ");
-            int balloons = int.Parse(Console.ReadLine());
+            if(int.TryParse(participants, out participantint))
+                {
 
-            int balloonsPerParticipant = balloons / participants;
-            int balloonsLeft = balloons % participants;
+            
+                Console.WriteLine("Enter the number of balloons: ");
+                string balloons = Console.ReadLine();
+                int balloonint = 0;
+                if(int.TryParse(balloons, out balloonint))
+                {
+                    int balloonsPerParticipant = balloonint / participantint;
+                    int balloonsLeft = balloonint % participantint;
 
-            Console.WriteLine("Each participant will receive " + balloonsPerParticipant + " balloons.");
-            Console.WriteLine("The organizer will have " + balloonsLeft + " balloons left.");
+                    Console.WriteLine("Each participant will receive " + balloonsPerParticipant + " balloons.");
+                    Console.WriteLine("The organizer will have " + balloonsLeft + " balloons left.");
+                }
+                else
+                {
+                    Console.WriteLine("Input cannot be null or empty or String");
+                }
 
-    }
+            }
+            else
+            {
+                Console.WriteLine("Input cannot be null or empty or String");
+            }
+      
 
-    // הופכים מספר דו-ספרתי
-    private static void ReverseNumber()
-    {
+        }
+
+        // הופכים מספר דו-ספרתי
+        public void ReverseNumber()
+        {
             Console.Write("Enter a two-digit number: ");
-            int inputNumber = int.Parse(Console.ReadLine());
+            string inputNumber = Console.ReadLine();
+            if (int.TryParse(inputNumber, out int number))
+            {
+                int firstDigit = number % 10;
+                int secondDigit = number / 10;
+                int reversedNumber = firstDigit * 10 + secondDigit;
 
-            int firstDigit = inputNumber % 10;
-            int secondDigit = inputNumber / 10;
-            int reversedNumber = firstDigit * 10 + secondDigit;
+                Console.WriteLine("The reversed number is: " + reversedNumber);
+            }
+            else
+            {
+                Console.WriteLine("Input cannot be null or empty or String");
+            }
+        }
 
-            Console.WriteLine("The reversed number is: " + reversedNumber);  
-    }
+        // הופכים מספר תלת-ספרתי
+        public void Reverse3Number()
+        {
+            Console.WriteLine("Enter 3 Numbers");
+            string inputNumber = Console.ReadLine();
+            if(int.TryParse(inputNumber , out int number))
+            {
+                int firstDigit =number / 100 ;
+                int secondDigit = (number / 10) % 10;
+                int ThirdDigit = (number % 100) % 10;
+                int reversedNumber = (ThirdDigit * 100) + (secondDigit * 10) + (firstDigit);
 
-    // הופכים מספר תלת-ספרתי
-    private static void Reverse3Number()
-    {
-        Console.WriteLine("Enter 3 Numbers");
-        int inputNumber = int.Parse(Console.ReadLine());
+                Console.WriteLine("The reversed number is: " + reversedNumber);
+            }
+            
+            else
+            {
+                Console.WriteLine("Input cannot be null or empty or String");
+            }
 
-        int firstDigit = ((inputNumber / 100) % 10);
-        int secondDigit = inputNumber / 10;
-        int ThirdDigit = inputNumber / 100;
+            
 
-        int reversedNumber = (firstDigit * 100) + (secondDigit * 10) + ThirdDigit;
-        
-        Console.WriteLine("The reversed number is: " + reversedNumber);  
+        }
 
-    }
+        // חדר במלון מספר חדר וקומה
+        public void RoomHotel()
+        {
+            Console.WriteLine("Enter Full Number Of the Room");
+            string StringRoom = Console.ReadLine();
+            if(int.TryParse(StringRoom , out int NumberRoom))
+            {
+                Console.WriteLine("Floor: " + (NumberRoom / 100));
+                Console.WriteLine("Room: " + (NumberRoom % 100));
 
-    // חדר במלון מספר חדר וקומה
-    private static void RoomHotel()
-    {
-        Console.WriteLine("Enter Full Number Of the Room");
-        int NumberRoom = int.Parse(Console.ReadLine());
-        Console.WriteLine("Floor: " + (NumberRoom / 100));
-        Console.WriteLine("Room: " + (NumberRoom % 100));
-    }
+            }
+            else
+            {
+                Console.WriteLine("Input cannot be null or empty or String");
+            }
+        }
 
-    // מספר 6 ספרתי לתאריך
-    private static void Number6ForData()
-    {
-        Console.WriteLine("Enter Number");
-        int InputUser = int.Parse(Console.ReadLine());
-        int day = InputUser / 10000;
-        int mounth = ((InputUser / 100) % 10);
-        int year = InputUser = InputUser % 100;
-        Console.WriteLine(day + "/" + mounth + "/" + year);
-    }
+        // מספר 6 ספרתי לתאריך
+        public void Number6ForData()
+        {
+            Console.WriteLine("Enter Number");
+            string inputString = Console.ReadLine();
 
-    // ?כמה עודף מגיע
-    private static void CashRegister()
-    {
-        Console.WriteLine("How much pay?");
-        int amountToPay = int.Parse(Console.ReadLine());
-        
-        Console.WriteLine("Money from the customer?");
-        int moneyReceived = int.Parse(Console.ReadLine());
-        
-        int excess = moneyReceived - amountToPay;
-        Console.WriteLine("Left: " + excess);
+            if (!string.IsNullOrEmpty(inputString))
+            {
+                if (int.TryParse(inputString, out int inputUser))
+                {
+                    int day = inputUser / 10000;
+                    int month = ((inputUser / 100) % 10);
+                    int year = inputUser % 100;
+                    Console.WriteLine(day + "/" + month + "/" + year);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input for number");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Input cannot be null or empty");
+            }
+        }
 
-        int num10NIS = excess / 10;
-        excess = excess % 10;
-        Console.WriteLine(num10NIS + " coins of 10 NIS");
+        // ?כמה עודף מגיע
+        public void CashRegister()
+        {
+            Console.WriteLine("How much pay?");
+            string amountToPayString = Console.ReadLine();
+            int amountToPay;
 
-        int num5NIS = excess / 5;
-        excess = excess % 5;
-        Console.WriteLine(num5NIS + " NIS 5 coins");
+            if (int.TryParse(amountToPayString, out amountToPay))
+            {
+                Console.WriteLine("Money from the customer?");
+                string moneyReceivedString = Console.ReadLine();
+                int moneyReceived;
 
-        int num2NIS = excess / 2;
-        excess = excess % 2;
-        Console.WriteLine(num2NIS + " NIS 2 coins");
+                if (int.TryParse(moneyReceivedString, out moneyReceived))
+                {
+                    int excess = moneyReceived - amountToPay;
+                    Console.WriteLine("Left: " + excess);
 
-        Console.WriteLine(excess + " NIS 1 coins");
+                    int num10NIS = excess / 10;
+                    excess = excess % 10;
+                    Console.WriteLine(num10NIS + " coins of 10 NIS");
 
-    }
+                    int num5NIS = excess / 5;
+                    excess = excess % 5;
+                    Console.WriteLine(num5NIS + " NIS 5 coins");
 
-}
+                    int num2NIS = excess / 2;
+                    excess = excess % 2;
+                    Console.WriteLine(num2NIS + " NIS 2 coins");
+
+                    Console.WriteLine(excess + " NIS 1 coins");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input for money received");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input for amount to pay");
+            }
+        }
